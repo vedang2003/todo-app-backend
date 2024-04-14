@@ -10,9 +10,9 @@ module.exports.saveTodo = async (req, res) => {
 
   todoModel.create({ text }).then((data) => {
     console.log("Added succesfully...");
-    console.log(data);
     res.send(data);
-  });
+  })
+  .catch((err) => console.log(err));
 };
 
 module.exports.updateTodo = async (req, res) => {
@@ -27,8 +27,7 @@ module.exports.deleteTodo = async (req, res) => {
   const {_id} = req.body;
   todoModel
     .findByIdAndDelete(_id)
-    .then(({data}) =>{
-      console.log("Data-> ", data);
+    .then(() =>{
       res.send("Deleted succesfully...")})
     .catch((err) => console.log(err));
 };
